@@ -1,34 +1,57 @@
 <template>
   <div class="layout-wapper">
-    <Draggable
+    <span
       v-for="item in layouts"
       :key="item.key"
-      :initialPosition="item"
-      @drag="handleDrag"
-    >
-      <span class="box">{{ item.key }}</span>
-    </Draggable>
+      :class="`layout-item ${item.key}`"
+      :style="{ left: item.left + 'px', top: item.top + 'px' }"
+      @mousedown="(e) => startDragging(e, item)"
+      @mousemove="(e) => draggingFun(e, item)"
+      @mouseup="stopDragging"
+      @mouseout="stopDragging"
+    >{{ item.key }}</span>
   </div>
 </template>
 <script setup lang="ts">
 import { watch, ref } from 'vue'
-import Draggable from './Draggable.vue';
 const props = defineProps(['modelValue', 'moduleConfig'])
 const emit = defineEmits(['update:modelValue'])
 
 const layouts = ref([])
+// 是否正在拖拽
+const dragging = ref(false)
+// 鼠标按下时距离元素左上角的偏移
+const offsetX = ref(0)
+// 鼠标按下时距禋元素左上角的偏移
+const offsetY = ref(0)
+const draggingKey = ref('')
 
+function startDragging(e, item) {
+  e.preventDefault();
+  dragging.value = true;
+  draggingKey.value = item.key;
 
-const handleDrag = ({ id, position }) => {
-  const item = layouts.value.find(item => item.key === id);
-  if (item) {
-    item = {
-      ...item,
-      ...position
-    }
+  offsetX.value = e.clientX - item.left;
+  offsetY.value  = e.clientY - item.top;
+  return false
+}
+
+function draggingFun(e, item) {
+  if (dragging.value === false || draggingKey.value === '') {
+    return;
   }
-};
+  if (draggingKey.value !== item.key) {
+    return;
+  }
+  item.left = e.clientX - offsetX.value;
+  item.top = e.clientY - offsetY.value;
+  emit('update:modelValue', layouts.value);
+}
 
+function stopDragging() {
+  dragging.value = false;
+  draggingKey.value = ''
+}
 
 function channelValue(value) {
   const items = generateArrayFromObject(value);
@@ -84,12 +107,18 @@ watch(
   height: 100%;
   position: relative;
   overflow: auto;
-  .box {
-    padding: 5px;
+  .layout-item {
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
     background-color: #ccc;
-  }
-  .dragging .box {
-    background-color: bisque !important;
+    position: absolute;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    cursor: move;
+    border-radius: 4px;
   }
 }
 </style>
