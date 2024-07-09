@@ -20,12 +20,10 @@ const layouts = ref([])
 
 
 const handleDrag = ({ id, position }) => {
-  const item = layouts.value.find(item => item.key === id);
-  if (item) {
-    item = {
-      ...item,
-      ...position
-    }
+  const findItem = layouts.value.find(item => item.key === id);
+  if (findItem) {
+    findItem.top = position.top
+    findItem.left = position.left
   }
 };
 
