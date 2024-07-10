@@ -157,7 +157,7 @@ const DATA_MANAGE_IMG_CONFIGS: Array<DataManageImgConfig> = [
     img: combatStressWardTent
   },
   {
-    id: 'connectingTents ',
+    id: 'connectingTents',
     title: '通道帐篷',
     titleEnglish: 'Connecting Tents ',
     structureEnglish: 'Tent',

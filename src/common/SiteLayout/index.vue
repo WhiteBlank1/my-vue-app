@@ -6,14 +6,16 @@
       :initialPosition="item"
       @drag="handleDrag"
     >
-      <span class="box">{{ item.key }}</span>
+      <div class="box">
+        <img :src="item.img" alt="">
+      </div>
     </Draggable>
   </div>
 </template>
 <script setup lang="ts">
 import { watch, ref } from 'vue'
 import Draggable from './Draggable.vue';
-const props = defineProps(['modelValue', 'moduleConfig'])
+const props = defineProps(['modelValue', 'moduleConfig', 'dataImages'])
 const emit = defineEmits(['update:modelValue'])
 
 const layouts = ref([])
@@ -30,7 +32,7 @@ const handleDrag = ({ id, position }) => {
 
 function channelValue(value) {
   const items = generateArrayFromObject(value);
-  calculatePositions(items, 800, 600, 100, 30, 10);
+  calculatePositions(items, 800, 600, 80, 80, 10);
   emit('update:modelValue', items);
   layouts.value = items;
 }
@@ -38,10 +40,16 @@ function channelValue(value) {
 function generateArrayFromObject(obj) {
   const result = [];
   for (const key in obj) {
+    console.log('key:', key);
+    
+    const findImg = props.dataImages.find(imageObject => imageObject.id === key);
     if (obj.hasOwnProperty(key)) {
       const count = obj[key];
       for (let i = 1; i <= count; i++) {
-        result.push({ key: `${key.substring(0, 5)}-${i}` });
+        result.push({
+          key: `${key.substring(0, 5)}-${i}`,
+          img: findImg?.img
+        });
       }
     }
   }
@@ -83,8 +91,9 @@ watch(
   position: relative;
   overflow: auto;
   .box {
-    padding: 5px;
-    background-color: #ccc;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
   }
   .dragging .box {
     background-color: bisque !important;

@@ -32,19 +32,21 @@ export default {
 
     const startDrag = (event) => {
       isDragging.value = true;
+      event.preventDefault();
       const e = event.type === 'touchstart' ? event.touches[0] : event;
       startPosition.value = {
         x: e.clientX - position.value.left,
         y: e.clientY - position.value.top,
       };
-      document.addEventListener('mousemove', onDrag);
-      document.addEventListener('touchmove', onDrag);
-      document.addEventListener('mouseup', stopDrag);
-      document.addEventListener('touchend', stopDrag);
+      document.addEventListener('mousemove', onDrag, false);
+      document.addEventListener('touchmove', onDrag, false);
+      document.addEventListener('mouseup', stopDrag, false);
+      document.addEventListener('touchend', stopDrag, false);
     };
 
     const onDrag = (event) => {
       if (!isDragging.value) return;
+      event.preventDefault();
       const e = event.type === 'touchmove' ? event.touches[0] : event;
       position.value = {
         top: e.clientY - startPosition.value.y,
@@ -55,10 +57,10 @@ export default {
 
     const stopDrag = () => {
       isDragging.value = false;
-      document.removeEventListener('mousemove', onDrag);
-      document.removeEventListener('touchmove', onDrag);
-      document.removeEventListener('mouseup', stopDrag);
-      document.removeEventListener('touchend', stopDrag);
+      document.removeEventListener('mousemove', onDrag, false);
+      document.removeEventListener('touchmove', onDrag, false);
+      document.removeEventListener('mouseup', stopDrag, false);
+      document.removeEventListener('touchend', stopDrag, false);
     };
 
     onMounted(() => {

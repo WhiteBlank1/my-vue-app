@@ -29,11 +29,11 @@ interface ManualCapacity {
   lengthField: number | undefined;
   widthField: number | undefined;
   operatingTheatre: number | undefined;
-  intensiceCare: number | undefined;
+  intensiveCareUnit: number | undefined;
   sterilizer: number | undefined;
   xRay: number | undefined;
-  ctScanner: number | undefined;
-  lab: number | undefined;
+  CTScanner: number | undefined;
+  Lab: number | undefined;
   perioperativeShelter: number | undefined;
   generalWardTents: number | undefined;
   perioperativeTent: number | undefined;
@@ -47,7 +47,6 @@ interface ManualCapacity {
   p1Tent: number | undefined;
   connectingChannel: number | undefined;
   C2Container: number | undefined;
-  C1Container: number | undefined;
 }
 
 interface DataManage {
@@ -104,11 +103,11 @@ const state: State = {
     lengthField: undefined,
     widthField: undefined,
     operatingTheatre: undefined,
-    intensiceCare: undefined,
+    intensiveCareUnit: undefined,
     sterilizer: undefined,
     xRay: undefined,
-    ctScanner: undefined,
-    lab: undefined,
+    CTScanner: undefined,
+    Lab: undefined,
     perioperativeShelter: undefined,
     generalWardTents:undefined,
     perioperativeTent: undefined,
@@ -122,7 +121,6 @@ const state: State = {
     p1Tent: undefined,
     connectingChannel: undefined,
     C2Container: undefined,
-    C1Container: undefined,
   },
   dataManage: {
     modelName: undefined,
@@ -199,9 +197,24 @@ const mutations = {
       lengthField: undefined,
       widthField: undefined,
       operatingTheatre: undefined,
-      intensiceCare: undefined,
+      intensiveCareUnit: undefined,
       sterilizer: undefined,
-      layouts: [],
+      xRay: undefined,
+      CTScanner: undefined,
+      Lab: undefined,
+      perioperativeShelter: undefined,
+      generalWardTents:undefined,
+      perioperativeTent: undefined,
+      dental: undefined,
+      powerGenerationSystems: undefined,
+      combatStressWardTent: undefined,
+      triageTent: undefined,
+      connectingTents: undefined,
+      p2Tent: undefined,
+      water: undefined,
+      p1Tent: undefined,
+      connectingChannel: undefined,
+      C2Container: undefined,
     };
   },
   updateDataManage(state: State, dataManage: DataManage) {

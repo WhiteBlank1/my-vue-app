@@ -19,7 +19,7 @@
         <el-row :gutter="30">
           <el-col :span="12">
             <el-form-item label="Length of Field" prop="lengthField">
-              <el-input v-model="formValue.lengthField" type="number" disabled>
+              <el-input v-model="formValue.lengthField" type="number">
                 <template #append>Meters</template>
               </el-input>
             </el-form-item>
@@ -28,7 +28,7 @@
         <el-row :gutter="30">
           <el-col :span="12">
             <el-form-item label="Width of Field" prop="widthField">
-              <el-input v-model="formValue.widthField" type="number" disabled>
+              <el-input v-model="formValue.widthField" type="number">
                 <template #append>Meters</template>
               </el-input>
             </el-form-item>
@@ -52,15 +52,15 @@
         </el-row>
         <el-row :gutter="30">
           <el-col :span="12">
-            <el-form-item label="Intensice Care Unit" prop="intensiceCare">
-              <el-input v-model="formValue.intensiceCare" type="number">
+            <el-form-item label="Intensice Care Unit" prop="intensiveCareUnit">
+              <el-input v-model="formValue.intensiveCareUnit" type="number">
                 <template #append>Units</template>
               </el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="CT Scanner" prop="ctScanner">
-              <el-input v-model="formValue.ctScanner" type="number">
+            <el-form-item label="CT Scanner" prop="CTScanner">
+              <el-input v-model="formValue.CTScanner" type="number">
                 <template #append>Units</template>
               </el-input>
             </el-form-item>
@@ -75,8 +75,8 @@
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="Lab/Blood Bank" prop="lab">
-              <el-input v-model="formValue.lab" type="number">
+            <el-form-item label="Lab/Blood Bank" prop="Lab">
+              <el-input v-model="formValue.Lab" type="number">
                 <template #append>Units</template>
               </el-input>
             </el-form-item>
@@ -210,11 +210,11 @@ const formValue = ref({
   lengthField: 50,
   widthField: 20,
   operatingTheatre: 2,
-  intensiceCare: 2,
+  intensiveCareUnit: 2,
   sterilizer: 2,
   xRay: 2,
-  ctScanner: 2,
-  lab: 2,
+  CTScanner: 2,
+  Lab: 2,
   perioperativeShelter: 2,
   generalWardTents: 2,
   perioperativeTent: 2,
@@ -228,17 +228,16 @@ const formValue = ref({
   p1Tent: 2,
   connectingChannel: 2,
   C2Container: 2,
-  C1Container: 2,
 });
 const rules = {
   lengthField: { required: true, validator: fieldValidator },
   widthField: { required: true, validator: fieldValidator },
   operatingTheatre: { required: true, validator: fieldValidator },
-  intensiceCare: { required: true, validator: fieldValidator },
+  intensiveCareUnit: { required: true, validator: fieldValidator },
   sterilizer: { required: true, validator: fieldValidator },
   xRay: { required: true, validator: fieldValidator },
-  ctScanner:{ required: true, validator: fieldValidator },
-  lab: { required: true, validator: fieldValidator },
+  CTScanner:{ required: true, validator: fieldValidator },
+  Lab: { required: true, validator: fieldValidator },
   perioperativeShelter: { required: true, validator: fieldValidator },
   generalWardTents: { required: true, validator: fieldValidator },
   perioperativeTent: { required: true, validator: fieldValidator },
@@ -252,7 +251,6 @@ const rules = {
   p1Tent: { required: true, validator: fieldValidator },
   connectingChannel: { required: true, validator: fieldValidator },
   C2Container: { required: true, validator: fieldValidator },
-  C1Container: { required: true, validator: fieldValidator },
 };
 const activeName = ref('reggister')
 

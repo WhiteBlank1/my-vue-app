@@ -6,6 +6,7 @@
         <SiteLayout
           :moduleConfig="formData"
           v-model="layouts"
+          :dataImages="DATA_MANAGE_IMG_CONFIGS"
         />
       </div>
       <el-button-group class="button-group">
@@ -21,6 +22,7 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 import SiteLayout from "@/common/SiteLayout/index.vue";
+import DATA_MANAGE_IMG_CONFIGS from "../../configs/data-manage-img-config"
 
 const commonStore = useStore();
 const router = useRouter();
